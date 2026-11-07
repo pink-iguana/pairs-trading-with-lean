@@ -1,7 +1,7 @@
 # Pairs Trading with Lean
 
-A Lean 4 library and companion Verso book about pairs trading. Early development:
-the repository currently contains the build skeleton, not trading algorithms.
+A Lean 4 library and companion Verso book about pairs trading.
+The first lesson works through one trade using exact arithmetic and an accounting proof.
 
 ## Develop
 
@@ -10,7 +10,7 @@ Install [elan](https://github.com/leanprover/elan), then run from this directory
 ```sh
 lake exe cache get       # Download Mathlib's compiled artifacts on first setup
 lake build              # Library
-lake test               # Smoke test
+lake test               # Worked trade scenarios
 lake lint               # Library declaration checks
 lake exe book           # Generate the book in _out/html-multi/
 lake exe verso-serve _out/html-multi
@@ -28,7 +28,7 @@ updates after successful builds on `main`. Pull requests run the same checks.
 ## Layout
 
 - `PairsTrading.lean`: library entry point; modules will grow under `PairsTrading/`.
-- `Book.lean` and `Book/`: Verso introduction and book generator.
+- `Book.lean` and `Book/`: Verso lessons and book generator.
 - `Tests/`: executable checks. Examples and data will be added when needed.
 
 ## License

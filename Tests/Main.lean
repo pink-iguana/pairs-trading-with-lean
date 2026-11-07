@@ -8,13 +8,18 @@ module
 import PairsTrading
 
 /-!
-# Library smoke test
+# Paired-trade examples
 
-Check the library import and executable test runner.
+Check the four closing scenarios used in the first lesson.
 -/
 
-/-- Smoke test for the library import and executable test runner. -/
+/-- Check spread values and profits against the worked examples. -/
 public def main : IO Unit := do
-  unless (1 : ℚ) / 2 + 1 / 2 == 1 do
-    throw <| IO.userError "rational arithmetic smoke test failed"
-  IO.println "Library smoke test passed."
+  let cases : List (ℚ × ℚ × ℚ × ℚ) :=
+    [(100, 50, 0, 10), (120, 50, 20, -10), (130, 60, 10, 0), (120, 60, 0, 10)]
+  for (exitA, exitB, expectedSpread, expectedPnl) in cases do
+    unless PairsTrading.spread 2 exitA exitB == expectedSpread do
+      throw <| IO.userError s!"unexpected spread at A={exitA}, B={exitB}"
+    unless PairsTrading.shortSpreadPnl 2 110 50 exitA exitB == expectedPnl do
+      throw <| IO.userError s!"unexpected profit at A={exitA}, B={exitB}"
+  IO.println "Four paired-trade scenarios passed."

@@ -5,10 +5,10 @@ Authors: Shehzad Hathi
 -/
 module
 
-public import Mathlib.Data.Rat.Init
+public import PairsTrading.Trade
 
 /-!
 # Pairs trading
 
-Library entry point. Trading definitions will be added with the worked examples.
+Library entry point for the paired-trade definitions and accounting theorem.
 -/
