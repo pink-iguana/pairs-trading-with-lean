@@ -6,12 +6,13 @@ Authors: Shehzad Hathi
 module
 
 import PairsTrading
+import Tests.Statistics
 import Tests.Strategy
 
 /-!
 # Paired-trade examples
 
-Check the worked trades, price history, and strategy execution.
+Check the worked trades, price history, strategy execution, and sample statistics.
 -/
 
 /-- Check spreads, profits, and marked values against the worked examples. -/
@@ -37,3 +38,4 @@ public def main : IO Unit := do
     throw <| IO.userError "unexpected possible closing profits along the price history"
   IO.println "Four price-history observations passed."
   Tests.checkStrategy
+  Tests.checkStatistics

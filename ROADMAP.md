@@ -10,7 +10,7 @@ Develop one small, runnable lesson at a time; keep later stages broad.
 | One trade | Complete | Exact profit calculations and an accounting proof |
 | A trade over time | Complete | Cash, position value, and realised profit along a price history |
 | A small strategy | Complete | Entry and exit rules on invented data, with signals and fills separated |
-| Estimate the relationship | Planned — next | Means, covariance, regression, and an estimated hedge ratio |
+| Estimate the relationship | In progress | Means, covariance, regression, and an estimated hedge ratio |
 | Build a comparable signal | Planned | Rolling statistics and standardised spreads |
 | Investigate convergence | Planned | Synthetic examples, stationarity, and cointegration tests |
 | Historical research | Planned | Data loading, pair selection, costs, and out-of-sample evaluation |
@@ -19,11 +19,11 @@ Stages may span several short lessons. Update their status as work starts or fin
 
 ## Next stage: estimate the relationship
 
-Review [A small strategy](Book/SmallStrategy.lean), then start replacing the supplied
-hedge ratio with a relationship estimated from prices.
+[Averages and centred prices](Book/Means.lean) introduces exact sample means, empty-sample
+handling, and a proof that centred observations sum to zero.
 
-- Introduce means and centred observations on a small dataset first.
-- Develop covariance and simple regression in subsequent steps.
+- Next: compare aligned, centred A and B observations through covariance.
+- Then develop simple regression.
 - Connect the fitted slope to the hedge ratio, keeping the intercept separate from quantities held.
 - Choose worked examples and handling of degenerate data before implementing each component.
 
@@ -41,5 +41,6 @@ Build, tests, lint, and book generation must pass.
   including its fixed-parameter scope and proof by induction.
 - Keep reusable definitions in the library and use checked excerpts in the Verso book.
 - Add selected useful proofs, rather than requiring a proof for every component.
+- Reuse Mathlib definitions and lemmas wherever they fit.
 - Follow Mathlib conventions and keep the prose conversational and concise.
 - No commits or pushes without an explicit request.
