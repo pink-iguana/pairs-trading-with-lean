@@ -5,6 +5,7 @@ Authors: Shehzad Hathi
 -/
 module
 
+public import PairsTrading.Regression
 public import PairsTrading.Statistics
 public import PairsTrading.Strategy
 public import PairsTrading.Trade
@@ -12,5 +13,6 @@ public import PairsTrading.Trade
 /-!
 # Pairs trading
 
-Library entry point for paired trades, the small strategy, and sample statistics.
+Library entry point for paired trades, the small strategy, sample statistics,
+and fitted price relationships.
 -/

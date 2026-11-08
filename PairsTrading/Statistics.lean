@@ -11,7 +11,7 @@ public import Mathlib.Algebra.Field.Rat
 /-!
 # Sample statistics
 
-Exact means, centred observations, and sample covariance for finite rational samples.
+Exact means, centred observations, sample covariance, and variance for finite rational samples.
 Empty samples have no mean; sample covariance needs at least two aligned observations.
 -/
 
@@ -69,5 +69,11 @@ theorem sampleCovariance?_swap (prices : List (ℚ × ℚ)) :
   cases sampleMean? (prices.map Prod.fst) <;>
     cases sampleMean? (prices.map Prod.snd) <;> simp [mul_comm]
 -- ANCHOR_END: sampleCovariance?_swap
+
+/-- Sample variance with denominator `n - 1`, or `none` for fewer than two observations. -/
+-- ANCHOR: sampleVariance?
+def sampleVariance? (values : List ℚ) : Option ℚ :=
+  sampleCovariance? (values.map fun value ↦ (value, value))
+-- ANCHOR_END: sampleVariance?
 
 end PairsTrading

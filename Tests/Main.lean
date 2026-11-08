@@ -6,13 +6,14 @@ Authors: Shehzad Hathi
 module
 
 import PairsTrading
+import Tests.Regression
 import Tests.Statistics
 import Tests.Strategy
 
 /-!
 # Paired-trade examples
 
-Check the worked trades, price history, strategy execution, and sample statistics.
+Check the worked trades, price history, strategy execution, sample statistics, and regression.
 -/
 
 /-- Check spreads, profits, and marked values against the worked examples. -/
@@ -39,3 +40,4 @@ public def main : IO Unit := do
   IO.println "Four price-history observations passed."
   Tests.checkStrategy
   Tests.checkStatistics
+  Tests.checkRegression

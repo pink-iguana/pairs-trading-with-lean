@@ -8,6 +8,7 @@ module
 public import Book.Covariance
 public import Book.FirstTrade
 public import Book.Means
+public import Book.Regression
 public import Book.SmallStrategy
 public import Book.TradeOverTime
 public import VersoManual
@@ -64,6 +65,8 @@ We begin with a single paired trade and its profit calculation.
 {include 1 Book.Means}
 
 {include 1 Book.Covariance}
+
+{include 1 Book.Regression}
 
 # Development
 
