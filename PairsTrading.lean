@@ -5,10 +5,11 @@ Authors: Shehzad Hathi
 -/
 module
 
+public import PairsTrading.Strategy
 public import PairsTrading.Trade
 
 /-!
 # Pairs trading
 
-Library entry point for the paired-trade definitions and accounting theorem.
+Library entry point for paired-trade calculations and the small strategy simulator.
 -/

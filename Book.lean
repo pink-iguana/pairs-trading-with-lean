@@ -6,6 +6,7 @@ Authors: Shehzad Hathi
 module
 
 public import Book.FirstTrade
+public import Book.SmallStrategy
 public import Book.TradeOverTime
 public import VersoManual
 
@@ -55,6 +56,8 @@ We begin with a single paired trade and its profit calculation.
 {include 1 Book.FirstTrade}
 
 {include 1 Book.TradeOverTime}
+
+{include 1 Book.SmallStrategy}
 
 # Development
 

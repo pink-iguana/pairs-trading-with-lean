@@ -6,11 +6,12 @@ Authors: Shehzad Hathi
 module
 
 import PairsTrading
+import Tests.Strategy
 
 /-!
 # Paired-trade examples
 
-Check the first lesson's closing scenarios and the second lesson's price history.
+Check the worked trades, price history, and strategy execution.
 -/
 
 /-- Check spreads, profits, and marked values against the worked examples. -/
@@ -35,3 +36,4 @@ public def main : IO Unit := do
   unless profits == [0, -4, 6, 10] do
     throw <| IO.userError "unexpected possible closing profits along the price history"
   IO.println "Four price-history observations passed."
+  Tests.checkStrategy
