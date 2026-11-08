@@ -6,6 +6,7 @@ Authors: Shehzad Hathi
 module
 
 public import Book.FirstTrade
+public import Book.TradeOverTime
 public import VersoManual
 
 /-!
@@ -52,6 +53,8 @@ whether the model helps us make money is a separate question.
 We begin with a single paired trade and its profit calculation.
 
 {include 1 Book.FirstTrade}
+
+{include 1 Book.TradeOverTime}
 
 # Development
 
