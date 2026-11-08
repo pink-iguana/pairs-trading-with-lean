@@ -10,7 +10,7 @@ import PairsTrading
 /-!
 # Sample statistics tests
 
-Check exact means and deviations, including empty and constant samples.
+Check means, deviations, and covariance, including empty and constant samples.
 -/
 
 open PairsTrading
@@ -34,6 +34,25 @@ public def checkStatistics : IO Unit := do
       throw <| IO.userError s!"unexpected mean for {repr values}"
     unless center? values == expectedDeviations do
       throw <| IO.userError s!"unexpected centred observations for {repr values}"
-  IO.println "Nine sample-statistics scenarios passed."
+  IO.println "Nine mean and centring scenarios passed."
+  -- Covariance requires two aligned observations, including repeated ones.
+  let covarianceCases : List (List (ℚ × ℚ) × Option ℚ) :=
+    [([], none), ([(110, 50)], none),
+      ([(110, 50), (112, 51), (120, 55)], some 14),
+      ([(118, 50), (116, 51), (108, 55)], some (-14)),
+      ([(110, 50), (110, 51), (110, 55)], some 0),
+      ([(110, 50), (112, 50), (120, 50)], some 0),
+      ([(0, 0), (1, 1)], some (1 / 2)),
+      ([(0, 1), (1, 0), (2, 1)], some 0),
+      ([(1, 2), (1, 2)], some 0)]
+  for (prices, expected) in covarianceCases do
+    unless sampleCovariance? prices == expected do
+      throw <| IO.userError s!"unexpected covariance for {repr prices}"
+    unless sampleCovariance? (prices.map Prod.swap) == expected do
+      throw <| IO.userError s!"unexpected covariance after swapping {repr prices}"
+    let shifted := prices.map fun (priceA, priceB) ↦ (priceA + 10, priceB)
+    unless sampleCovariance? shifted == expected do
+      throw <| IO.userError s!"unexpected covariance after shifting {repr prices}"
+  IO.println "Nine covariance scenarios, column swaps, and price shifts passed."
 
 end Tests

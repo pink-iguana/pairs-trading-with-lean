@@ -5,6 +5,7 @@ Authors: Shehzad Hathi
 -/
 module
 
+public import Book.Covariance
 public import Book.FirstTrade
 public import Book.Means
 public import Book.SmallStrategy
@@ -61,6 +62,8 @@ We begin with a single paired trade and its profit calculation.
 {include 1 Book.SmallStrategy}
 
 {include 1 Book.Means}
+
+{include 1 Book.Covariance}
 
 # Development
 

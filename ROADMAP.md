@@ -21,9 +21,9 @@ Stages may span several short lessons. Update their status as work starts or fin
 
 [Averages and centred prices](Book/Means.lean) introduces exact sample means, empty-sample
 handling, and a proof that centred observations sum to zero.
+[How prices move together](Book/Covariance.lean) adds sample covariance and column symmetry.
 
-- Next: compare aligned, centred A and B observations through covariance.
-- Then develop simple regression.
+- Next: develop simple regression on aligned price pairs.
 - Connect the fitted slope to the hedge ratio, keeping the intercept separate from quantities held.
 - Choose worked examples and handling of degenerate data before implementing each component.
 
@@ -35,6 +35,7 @@ Build, tests, lint, and book generation must pass.
 - All project algorithms are implemented in Lean.
 - Use rationals for the first worked models; introduce floats when numerical statistics need them.
 - Build a small strategy before developing the statistical foundations.
+- Means divide by `n`; sample covariance uses `n - 1` and needs at least two observations.
 - The worked strategy shorts one A and buys two B: entry at spread ≥ 8, exit at spread ≤ 2.
   Signals fill at the next observation; final signals remain unfilled and open positions are marked.
 - The strategy lesson explains non-anticipation through `runShortSpreadStrategy_prefix`,

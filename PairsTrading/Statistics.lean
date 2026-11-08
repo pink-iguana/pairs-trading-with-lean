@@ -9,10 +9,10 @@ public import Mathlib.Algebra.BigOperators.Group.List.Basic
 public import Mathlib.Algebra.Field.Rat
 
 /-!
-# Sample means and centring
+# Sample statistics
 
-Exact means and centred observations for finite rational samples.
-Empty samples have no mean and cannot be centred using their own mean.
+Exact means, centred observations, and sample covariance for finite rational samples.
+Empty samples have no mean; sample covariance needs at least two aligned observations.
 -/
 
 @[expose] public section
@@ -48,5 +48,26 @@ theorem sum_centered_eq_zero {values deviations : List ℚ}
     have hlength : ((value :: rest).length : ℚ) ≠ 0 := Nat.cast_ne_zero.mpr (by simp)
     rw [mul_div_cancel₀ _ hlength, add_neg_cancel]
 -- ANCHOR_END: sum_centered_eq_zero
+
+/-- Sample covariance with denominator `n - 1`, or `none` for fewer than two observations. -/
+-- ANCHOR: sampleCovariance?
+def sampleCovariance? (prices : List (ℚ × ℚ)) : Option ℚ :=
+  if prices.length < 2 then none else
+    match sampleMean? (prices.map Prod.fst), sampleMean? (prices.map Prod.snd) with
+    | some meanA, some meanB =>
+      some ((prices.map fun (priceA, priceB) ↦
+        (priceA - meanA) * (priceB - meanB)).sum / (prices.length - 1 : ℚ))
+    | _, _ => none
+-- ANCHOR_END: sampleCovariance?
+
+/-- Swapping the two columns leaves sample covariance unchanged. -/
+-- ANCHOR: sampleCovariance?_swap
+theorem sampleCovariance?_swap (prices : List (ℚ × ℚ)) :
+    sampleCovariance? (prices.map Prod.swap) = sampleCovariance? prices := by
+  simp only [sampleCovariance?, List.length_map, List.map_map, Function.comp_def,
+    Prod.fst_swap, Prod.snd_swap]
+  cases sampleMean? (prices.map Prod.fst) <;>
+    cases sampleMean? (prices.map Prod.snd) <;> simp [mul_comm]
+-- ANCHOR_END: sampleCovariance?_swap
 
 end PairsTrading
